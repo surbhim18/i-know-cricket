@@ -1,0 +1,353 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "i know cricket",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": [
+                        "quit quiz",
+                        "cancel game",
+                        "quit game",
+                        "quit",
+                        "cancel"
+                    ]
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "tell rules",
+                        "tell me rules",
+                        "what are the rules",
+                        "rules",
+                        "I require help",
+                        "help required",
+                        "help needed",
+                        "I want help",
+                        "help me please",
+                        "I need help",
+                        "help me",
+                        "help"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "exit game",
+                        "exit",
+                        "goodbye",
+                        "bye",
+                        "bye bye",
+                        "stop it",
+                        "stop"
+                    ]
+                },
+                {
+                    "name": "QuizIntent",
+                    "slots": [],
+                    "samples": [
+                        "Let's start",
+                        "Begin quiz",
+                        "Begin",
+                        "Play quiz",
+                        "Play I Know Cricket",
+                        "Bring it on",
+                        "Start quiz",
+                        "Let's get started"
+                    ]
+                },
+                {
+                    "name": "YesIntent",
+                    "slots": [],
+                    "samples": [
+                        "positive",
+                        "yep",
+                        "yup",
+                        "yeah",
+                        "ya",
+                        "yes"
+                    ]
+                },
+                {
+                    "name": "NoIntent",
+                    "slots": [],
+                    "samples": [
+                        "negative",
+                        "nah",
+                        "neh",
+                        "nope",
+                        "no"
+                    ]
+                },
+                {
+                    "name": "NextQuestionIntent",
+                    "slots": [],
+                    "samples": [
+                        "move to next question",
+                        "move to the next question",
+                        "let's see the next question",
+                        "next question now",
+                        "can I have the next question",
+                        "let's go to the next question",
+                        "I want the next question",
+                        "what is the next question",
+                        "okay next question",
+                        "Next question please",
+                        "Next question"
+                    ]
+                },
+                {
+                    "name": "RepeatQuestionIntent",
+                    "slots": [],
+                    "samples": [
+                        "Please repeat the question again",
+                        "Repeat the question again",
+                        "Repeat the question again please",
+                        "Repeat question again please",
+                        "Question again please",
+                        "Say question again please",
+                        "Can you say the question again",
+                        "Say question again",
+                        "Please repeat question",
+                        "Repeat question please",
+                        "I didn't catch that. Repeat the question please",
+                        "Can you repeat the question please",
+                        "Repeat the question please",
+                        "Can you please repeat the question",
+                        "I didn't get the question",
+                        "Repeat the question",
+                        "Please repeat the question",
+                        "Repeat question"
+                    ]
+                },
+                {
+                    "name": "RepeatOptionsIntent",
+                    "slots": [],
+                    "samples": [
+                        "I want the options again",
+                        "please repeat options",
+                        "please repeat the options",
+                        "I didn't get the options",
+                        "can you say the options again",
+                        "say options again",
+                        "repeat options again",
+                        "repeat options for this question",
+                        "can you repeat the options please",
+                        "repeat options please",
+                        "repeat options"
+                    ]
+                },
+                {
+                    "name": "ReplayIntent",
+                    "slots": [],
+                    "samples": [
+                        "I want to start again",
+                        "I want to play again",
+                        "let's start again",
+                        "play quiz again",
+                        "play again",
+                        "start quiz again",
+                        "restart quiz",
+                        "start again",
+                        "replay",
+                        "let's play again"
+                    ]
+                },
+                {
+                    "name": "WhatsMyScoreIntent",
+                    "slots": [],
+                    "samples": [
+                        "i want to know my score",
+                        "what is my current score",
+                        "tell me my current score",
+                        "tell my score so far",
+                        "tell my score",
+                        "score",
+                        "what is the score",
+                        "tell me my score",
+                        "what is my score so far",
+                        "What is my score"
+                    ]
+                },
+                {
+                    "name": "TellMeMoreIntent",
+                    "slots": [],
+                    "samples": [
+                        "I want to know more",
+                        "Tell me more"
+                    ]
+                },
+                {
+                    "name": "AnswerIntent",
+                    "slots": [
+                        {
+                            "name": "option",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "My answer is option {option}",
+                        "My answer is {option} ",
+                        "I select option {option}",
+                        "I select {option}",
+                        "I choose option {option}",
+                        "I choose {option}",
+                        "option {option}",
+                        "{option}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "options",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "D"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "C"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "B"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "A"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "QuizIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": []
+                },
+                {
+                    "name": "ReplayIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.439784736986"
+                    },
+                    "slots": []
+                }
+            ]
+        },
+        "prompts": [
+            {
+                "id": "Confirm.Slot.708157153291.804692941197",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Should I lock option {option} as your final answer?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Is option {option} , your final answer?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Should I confirm option {option} ?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.708157153291.804692941197",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Hey, what's your answer?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Which option is your answer?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What is your answer, buddy?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Which option do you select?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.708157153291",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "okay, you say option {option} , should we lock it?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Is option {option} your final answer, are you sure?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Are you sure you want to go with option {option} ?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Good choice, but is option {option} right, should I lock it?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Hmm option {option} , are you sure?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Are you sure about option {option} , should I lock it?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Should I lock option {option} as your final answer?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Is option {option} your final answer?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Is {option} your final answer?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "I heard {option} . Is that your final answer?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.439784736986",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "You current game will be lost. Shall we begin?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Your current game will be lost. Start again?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Your current progress will be lost. Replay?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Your current score will be lost. Do you want to start again?"
+                    }
+                ]
+            }
+        ]
+    }
+}
