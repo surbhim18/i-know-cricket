@@ -130,6 +130,7 @@ currQues = -1
 askedQuesCount = 0
 askedQues = []
 session_attributes = {}
+rulecount = 0
 
 quesAnswered = True
 
@@ -310,15 +311,15 @@ def get_answer(intent, session):
         return build_response(session_attributes, build_speechlet_response(card_title, speech_output, reprompt_text, should_end_session))
 
     if ans_input == correctAns:
-        speak = "That is the correct answer!"
+        speak = "That is the correct answer!" + " Say next for the next question."
         score = score + 1
     else:
-        speak = "That answer is incorrect. The correct answer is option " + convertRev(correctAns) + " . "
+        speak = "That answer is incorrect. The correct answer is option " + convertRev(correctAns) + " . Say tell me more to know about the correct answer. " 
 
     session_attributes[score] = score
     
     quesAnswered = True
-    speech_output = speak + " Say next for the next question."
+    speech_output = speak 
     reprompt_text = "You can know more about this question's answer by saying, tell me more. "
     
     should_end_session = False
@@ -420,7 +421,7 @@ def tell_me_more(intent, session):
         speak = "You can't know about the answer yet! Answer the question first."
         re = "I am waiting for the answer! Say, repeat question, if you want me to repeat the question."
     else:
-        speak = ansInfo[currQues]
+        speak = ansInfo[currQues] + " . Say begin to continue. "
         re = "Move to the next question by saying, next question."
 
     speech_output = speak
@@ -471,21 +472,32 @@ def yes_response():
     
 def get_help_response():
     
+    global rulecount
+    
     card_title = "Help"
-    speech_output = "Hi! Welcome to I Know Cricket! " \
-                    "This is a cricket quiz and the rules are simple. " \
-                    "After you start the quiz, you will be prompted with a question. "\
-                    "Options for the same will be provided. You have to choose one option, by saying, Option 1, or, Option 2, or, Option 3, or, Option 4. " \
-                    "After you answer the question, I will tell you, whether you were right, or not. Then say, next question, to move to the next question. "\
-                    "You can get a question repeated, by saying, Repeat question. You can also get the options for a question, repeated, by saying, repeat options. "\
-                    "You can also know more about the answer, of a question, by saying, tell me more. "\
-                    "You will be asked 6 questions. You will get the final score after the game. To get your score between the game, you can ask, what is my score. "
+    
+    rulecount = rulecount + 1
+    if rulecount == 1:
+        speech_output = "This is a cricket quiz and the rules are simple. " \
+                        "Alexa will ask you a question. You choose your answer by saying Option 1 or Option 2 etc. "\
+                        "Alex will tell you if you were correct. Move to the next question by saying Next! "
+    else:
+        speech_output = "Hi! Welcome to I Know Cricket! " \
+                        "This is a cricket quiz and the rules are simple. " \
+                        "After you start the quiz, you will be prompted with a question. "\
+                        "Options for the same will be provided. You have to choose one option, by saying, Option 1, or, Option 2, or, Option 3, or, Option 4. " \
+                        "After you answer the question, I will tell you, whether you were right, or not. Then say, next question, to move to the next question. "\
+                        "You can get a question repeated, by saying, Repeat question. You can also get the options for a question, repeated, by saying, repeat options. "\
+                        "You can also know more about the answer, of a question, by saying, tell me more. "\
+                        "You will be asked 6 questions. You will get the final score after the game. To get your score between the game, you can ask, what is my score. "
+        rulecount = 0                
 
     if askedQuesCount == 0:
         speech_output = speech_output + "That's all! We're all set to begin! Say begin to get started!"
     else:
         speech_output = speech_output + "Alright! Shall we continue? Say begin to continue!"
                     
+    speech_output = speech_output + " For detailed rules, say rules again. "
     reprompt_text = "Hey there! What are you waiting for? " \
                     "Say begin!"
                     
