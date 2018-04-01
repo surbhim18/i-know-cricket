@@ -52,8 +52,7 @@
                         "Play quiz",
                         "Play I Know Cricket",
                         "Bring it on",
-                        "Start quiz",
-                        "Let's get started"
+                        "Start quiz"
                     ]
                 },
                 {
@@ -83,31 +82,22 @@
                     "name": "NextQuestionIntent",
                     "slots": [],
                     "samples": [
-                        "move to next question",
-                        "move to the next question",
-                        "let's see the next question",
-                        "next question now",
-                        "can I have the next question",
-                        "let's go to the next question",
-                        "I want the next question",
                         "what is the next question",
                         "okay next question",
                         "Next question please",
-                        "Next question"
+                        "Next question",
+                        "Next"
                     ]
                 },
                 {
                     "name": "RepeatQuestionIntent",
                     "slots": [],
                     "samples": [
+                        "Repeat question",
                         "Please repeat the question again",
                         "Repeat the question again",
                         "Repeat the question again please",
                         "Repeat question again please",
-                        "Question again please",
-                        "Say question again please",
-                        "Can you say the question again",
-                        "Say question again",
                         "Please repeat question",
                         "Repeat question please",
                         "I didn't catch that. Repeat the question please",
@@ -116,41 +106,29 @@
                         "Can you please repeat the question",
                         "I didn't get the question",
                         "Repeat the question",
-                        "Please repeat the question",
-                        "Repeat question"
+                        "Please repeat the question"
                     ]
                 },
                 {
                     "name": "RepeatOptionsIntent",
                     "slots": [],
                     "samples": [
-                        "I want the options again",
-                        "please repeat options",
-                        "please repeat the options",
-                        "I didn't get the options",
-                        "can you say the options again",
-                        "say options again",
-                        "repeat options again",
-                        "repeat options for this question",
-                        "can you repeat the options please",
                         "repeat options please",
-                        "repeat options"
+                        "repeat options",
+                        "I didn't get the options",
+                        "repeat options again",
+                        "can you repeat the options please"
                     ]
                 },
                 {
                     "name": "ReplayIntent",
                     "slots": [],
                     "samples": [
-                        "I want to start again",
-                        "I want to play again",
-                        "let's start again",
-                        "play quiz again",
                         "play again",
-                        "start quiz again",
+                        "start over",
+                        "restart",
                         "restart quiz",
-                        "start again",
-                        "replay",
-                        "let's play again"
+                        "replay"
                     ]
                 },
                 {
