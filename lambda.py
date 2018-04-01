@@ -131,7 +131,7 @@ askedQuesCount = 0
 askedQues = []
 session_attributes = {}
 
-quesAnswered = False
+quesAnswered = True
 
 # --------------- Functions that control the skill's behavior ------------------
 
@@ -209,7 +209,16 @@ def quiz(intent, session):
                 reprompt_text = " Hey! Let's play again! Say Replay to play again. Or Exit to stop playing "
                 should_end_session = False
 
-                return build_response(session_attributes, build_speechlet_response(card_title, speech_output, reprompt_text, should_end_session))  
+                return build_response(session_attributes, build_speechlet_response(card_title, speech_output, reprompt_text, should_end_session))
+            
+    if quesAnswered == False:
+        card_title = "Alert!"
+
+        speech_output = "Hey! Answer the last question I asked you."
+        reprompt_text = "Hey! I am waiting for your answer. If you missed the question, say repeat question."
+
+        should_end_session = False
+        return build_response(session_attributes, build_speechlet_response(card_title, speech_output, reprompt_text, should_end_session))
              
     
     askedQuesCount = askedQuesCount+1   
@@ -235,7 +244,8 @@ def quiz(intent, session):
     should_end_session = False
     
     return build_response(session_attributes, build_speechlet_response(card_title, speech_output, reprompt_text, should_end_session))    
-
+    #print(b['response']['outputSpeech']['text'])
+    
 
 def convert(val):
 
@@ -308,8 +318,8 @@ def get_answer(intent, session):
     session_attributes[score] = score
     
     quesAnswered = True
-    speech_output = speak
-    reprompt_text = "Move to the next question by saying, next question, or you can know more about this question's answer by saying, tell me more. "
+    speech_output = speak + " Say next for the next question."
+    reprompt_text = "You can know more about this question's answer by saying, tell me more. "
     
     should_end_session = False
     
@@ -333,6 +343,12 @@ def repeat_question(intent, session):
 
     card_title = "Question"
 
+    if currQues == -1:
+        speech_output = "The quiz has not started yet! Say begin to start the quiz"
+        reprompt_text = "Say begin to start the quiz"
+        should_end_session = False
+        return build_response(session_attributes, build_speechlet_response(card_title, speech_output, reprompt_text, should_end_session))    
+    
     if quesAnswered == True:
         speak = "Your question was. "
         re = "Say, next question, to move to the next question!"
@@ -352,6 +368,13 @@ def repeat_options(intent, session):
 
     card_title = "Option"
 
+    if currQues == -1:
+        speech_output = "The quiz has not started yet! Say begin to start the quiz"
+        reprompt_text = "Say begin to start the quiz"
+        should_end_session = False
+        return build_response(session_attributes, build_speechlet_response(card_title, speech_output, reprompt_text, should_end_session))    
+    
+    
     if quesAnswered == True:
         speak = "Your options were. "
         re = "Say, next question, to move to the next question!"
@@ -413,12 +436,14 @@ def replay_quiz(intent, session):
     global currQues
     global askedQuesCount
     global askedQues
+    global quesAnswered
     
     score = 0
     currQues = -1
     askedQuesCount = 0
     askedQues = []
     session_attributes = {}
+    quesAnswered = True
     
     return quiz(intent, session)    
 
@@ -454,11 +479,15 @@ def get_help_response():
                     "After you answer the question, I will tell you, whether you were right, or not. Then say, next question, to move to the next question. "\
                     "You can get a question repeated, by saying, Repeat question. You can also get the options for a question, repeated, by saying, repeat options. "\
                     "You can also know more about the answer, of a question, by saying, tell me more. "\
-                    "You will be asked 6 questions. You will get the final score after the game. To get your score between the game, you can ask, what is my score. "\
-                    "That's all! We're all set to begin! Say begin to get started!"
+                    "You will be asked 6 questions. You will get the final score after the game. To get your score between the game, you can ask, what is my score. "
+
+    if askedQuesCount == 0:
+        speech_output = speech_output + "That's all! We're all set to begin! Say begin to get started!"
+    else:
+        speech_output = speech_output + "Alright! Shall we continue? Say begin to continue!"
                     
     reprompt_text = "Hey there! What are you waiting for? " \
-                    "Say Start Quiz to begin with the quiz!"
+                    "Say begin!"
                     
     should_end_session = False
     
@@ -491,7 +520,7 @@ def on_session_started(session_started_request, session):
     currQues = -1
     askedQuesCount = 0
     askedQues = []
-    quesAnswered = False
+    quesAnswered = True
 
 def on_launch(launch_request, session):
     return get_welcome_response()
