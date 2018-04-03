@@ -316,7 +316,7 @@ def get_answer(intent, session):
     else:
         speak = "That answer is incorrect. The correct answer is option " + convertRev(correctAns) + " . Say tell me more to know about the correct answer. " 
 
-    session_attributes[score] = score
+    session_attributes['score'] = score
     
     quesAnswered = True
     speech_output = speak 
@@ -479,8 +479,8 @@ def get_help_response():
     rulecount = rulecount + 1
     if rulecount == 1:
         speech_output = "This is a cricket quiz and the rules are simple. " \
-                        "Alexa will ask you a question. You choose your answer by saying Option 1 or Option 2 etc. "\
-                        "Alex will tell you if you were correct. Move to the next question by saying Next! "
+                        "I will ask you a question. You choose your answer by saying, Option 1, or, Option 2, etc. "\
+                        "I will tell you, if you were correct. Move to the next question by saying Next! "
     else:
         speech_output = "Hi! Welcome to I Know Cricket! " \
                         "This is a cricket quiz and the rules are simple. " \
